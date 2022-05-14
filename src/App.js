@@ -41,7 +41,7 @@ export default function App() {
             method: 'DELETE',
         })
         .then(res => {
-            if(res.status !== 200) {
+            if(res.status !== 201) {
                 return
             }else {
                 setItems(items.filter(data => {
@@ -160,7 +160,8 @@ export default function App() {
               Swal.fire(
                 'Deleted!',
                 `Deleted Object <strong class="text-success">UserId: ${e.target.name} Id: ${e.target.id}</strong>`,
-                'success'
+                'success',
+                getPosts()
               )
             }
           })
