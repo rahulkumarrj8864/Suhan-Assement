@@ -7,10 +7,13 @@ import Nav from './Nav'
 export default function App() {
     const [items, setItems] = useState([])
     const [pageCount, setPageCount] = useState(0)
+
+    const devEnc = process.env.NODE_ENV != "production";
+    const {REACT_APP_DEV_URL,REACT_APP_PROD_URL} = process.env
     
     const getPosts = async () => {
         // const res = await fetch(`http://localhost:3004/posts?_page=1&_limit=${limit}`)
-        const res = await fetch(`http://localhost:3004/posts?_page=1`)
+        const res = await fetch(`${devEnc ? REACT_APP_DEV_URL:REACT_APP_PROD_URL}/posts?_page=1`)
         const data = await res.json()
         const total = res.headers.get('x-total-count')
         console.log(total);
